@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-12">
+    	<h1>Contact Us</h1>
+		{% if success==True %}
+		<div class="alert alert-success alert-dismissable fade in">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<strong>Success! </strong> Your message has been sent.
+		</div>
+	</div>
+</div>
+		{% else %}
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<p>
+		Tired of gazing longingly at our <a href="https://www.youtube.com/user/WellesleyCollegeTV">YouTube</a>, <a href="https://www.facebook.com/wctvboobtube/">Facebook</a>, and <a href="https://www.twitter.com/wctvboobtube/">Twitter</a> pages? Have burning questions that need answers? Want to help us steer this sinking ship we call WCTV's biweekly newscast?
+		</p>
+		<p>
+		Send us an email using this form, and we'll get back to you as soon as we can. 
+		</p>
+		<p id="perky">Stay Perky!</p>
+	</div>
+	<div class="col-sm-6">
+			{% for message in form.name.errors %}
+				<div class="alert alert-danger alert-dismissable fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>ERROR! </strong>{{message}}
+				</div>
+			{% endfor %}
+			
+			{% for message in form.email.errors %}
+				<div class="alert alert-danger alert-dismissable fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>ERROR! </strong>{{message}}
+				</div>
+			{% endfor %}
+			
+			{% for message in form.message.errors %}
+				<div class="alert alert-danger alert-dismissable fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>ERROR! </strong>{{message}}
+				</div>
+			{% endfor %}
+			
+			<form action="/contact" method="POST" name="contact" role="form">
+			{{ form.hidden_tag() }}
+				<p>{{form.name.label}}<br>
+					{{ form.name }}
+				</p>
+				<p>{{form.email.label}}<br>
+					{{ form.email }}
+				</p>
+				<p>{{form.message.label}}<br>
+					{{ form.message }}
+				</p>
+				<p> {{ form.submit}}</p>
+			</form>
+		</div>
+	</div>
+	{% endif %}
+{% endblock %}

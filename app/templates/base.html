@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="/static/thumb.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="/static/template.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Lora|Lato|Dancing+Script" rel="stylesheet">
+  
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src='//cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js'></script>
+</head>
+<body>
+
+
+<header>
+  <div class="container">
+  <a href="/">
+    <img src="static/logo.png" class="center-block" id="logo"/>
+  </a>
+  </div>
+  <div class="container-fluid" id="taglinepane">
+    <h2 id="tagline">Wellesley College's #1 satire news show!</h2>
+  </div>
+  <div class="container-fluid" id="breaking">
+	<h5 class="marquee"><strong><i class="fa  fa-exclamation-circle"></i> BREAKING NEWS:</strong> Wanda Wellesley burns down entire dorm room at 3 am while microwaving SkinnyPOP popcorn. Her response: "I didn't know I couldn't do that." <strong><i class="fa  fa-television"></i> TUNE IN TONIGHT:</strong> Anonymous tip to Campus Police leads to tearful reunion of kidnapped Chunky Monkey ice cream with rightful owner after long search, car chase. <strong><i class="fa fa-exclamation-triangle"></i> WENDY ALERT:</strong> Wendy Wellesley is STILL not done with her CS pset and WILL NOT be going to the frat party at MIT this weekend. If she is asked again, she will, "like, totally lose it". <strong><i class="fa fa-flash"></i> SUPER ACTION NEWS:</strong> That one hot guy who works out at the KSC changed Facebook relationship status from "it's complicated" to "it's complicated ;)". A wake for his chastity will be held Thursday evening. Lemon Thai will be served.
+	</h5>
+  </div>
+</header>
+    <nav class="nav navbar-default" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/castcrew">Cast & Crew</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if forecast != False %} 
+            <li id="weathernow"><a href="#">Wellesley, MA, USA: {{ forecast[0] }} &#8457
+            <img src="{{ forecast[1]}}" style="height:25px;"></a>
+            </li>
+          {% else %}
+            <li><a href="#">Wellesley, MA, USA: weather n/a</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+<footer>
+  <div class="container-fluid" id="footer1">
+    <div class="row">
+      <div class="col-sm-4">
+        <h1>About this Site</h1>
+        <p>Written in Python, HTML, CSS, and jQuery, using the Flask micro-framework and SqlAlchemy. Google and OpenWeather APIs were abused in the creation of this website. Made with <3 by <a href="http://bianca-morris.com/">Bianca Morris</a>.<p>
+      </div>
+      <div class="col-sm-4">
+		<h1>Lawyer Speak</h1>
+		<p>Don't read the fine print! This is all totally legal. Pinky swearzies.</p>
+		<div class="row">
+			<div class="col-md-4 col-sm-12"><a href="/terms" data-toggle="tooltip" data-placement="top" title="Don't steal our stuff, m8!">Terms of Use</a>
+			</div>
+			<div class="col-md-4 col-sm-12">	
+			<p><a href="/terms#privacy" data-toggle="tooltip" data-placement="top" title="Don't call the cops!">Privacy Policy</a></p>
+			</div>
+			<div class="col-md-4 col-sm-12">
+			<p><a href="https://www.youtube.com/watch?v=iLi2xB82ZyI" data-toggle="tooltip" data-placement="top" title="Yum! Too bad we don't have any...">Cookies</a></p>
+			</div>
+		</div>
+      </div>
+      <div class="col-sm-4">
+        <h1>Stalk Us</h1>
+        <p>No judgment here. We do it too.<p>
+        <a href="https://www.twitter.com/wctvboobtube/"><i class="fa fa-twitter-square"></i></a>
+        <a href="https://www.facebook.com/wctvboobtube/"><i class="fa fa-facebook-square"></i></a>
+        <a href="https://www.youtube.com/user/WellesleyCollegeTV"><i class="fa fa-youtube-square"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" id="footer2">
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="text-center">Copyright &copy Wellesley College Television (WCTV)</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+$mq = $('.marquee').marquee({
+    //speed in milliseconds of the marquee
+    duration: 20000,
+    //time in milliseconds before the marquee will start
+    delayBeforeStart: 0,
+    direction: 'left',
+	startVisible: true,
+	duplicated: true
+});
+//stop
+$mq.marquee('pause');
+//on hover start
+$mq.hover(function(){
+  $mq.marquee('resume');
+}, function(){
+  $mq.marquee('pause');
+})
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-7 col-sm-6">
+      	<h1>{{ videos[0][0] }}</h1>
+    	<h4>{{ videos[0][5] }}</h4>
+		<div class="embed-responsive embed-responsive-16by9">
+			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ videos[0][3] }}" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<h4><strong>Date Uploaded:</strong> {{ videos[0][4] }} </h4>
+  		<p>{{ videos[0][1] }}</p>
+		<p>Subscribe on Youtube: <a href="https://www.youtube.com/user/WellesleyCollegeTV">https://www.youtube.com/user/WellesleyCollegeTV</a><br>
+		   Like us on Facebook: <a href="https://www.facebook.com/wctvboobtube/">https://www.facebook.com/wctvboobtube/</a><br>
+		   Follow us on Twitter: <a href="https://www.twitter.com/wctvboobtube/">https://www.twitter.com/wctvboobtube/</a>
+		</p>
+		<p>And, most importantly... <span id="perky">stay perky!</span></p>
+	</div>
+	<div class="col-md-5 col-sm-6">
+		<p id="ad">[advertisement]
+        <img class="img-responsive text-align" src="http://placehold.it/350x170"></p>
+		<h3>Recent Clips</h3>
+		{% for video in videos[1:5] %}
+		<div class="row">
+			<div class="col-sm-6">
+				<a href="https://www.youtube.com/watch?v={{ video[3] }}">
+				<img src="{{ video[2] }}" class="img-responsive" /></a>
+			</div>
+			<div class="col-sm-6">
+				<a href="https://www.youtube.com/watch?v={{ video[3] }}"><h4>{{ video[0] }}</h4></a>
+				<p>{{ video[5] }}<br>{{ video[6] }}</p>
+			</div>
+		</div>
+		{% endfor %}
+		<div class="row">
+		<div class="col-xs-12" id="info">
+			<a href="https://www.youtube.com/wellesleycollegetv"><button class="btn btn-default">See more episodes...</button></a>
+            
+      	</div>
+    </div>
+</div>
+
+
+	    
+{% endblock %}

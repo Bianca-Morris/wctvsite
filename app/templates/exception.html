@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+	{% if error %}
+    <div class="col-sm-4">
+		<h1>Whoops!</h1>
+		<h3>
+		Looks like you're lost.
+		</h3>
+		<p>
+		No worries, though. Everyone is eventually consumed by the cold embrace of oblivion.
+		</p>
+		<p>
+		Pick another link and don't forget to...
+		</p>
+		<p>
+		<span id="perky">Stay Perky!</span>
+		</p>
+    </div>
+	<div class="col-sm-8">
+		<img class="error-image" src="static/lost.gif" class="img-responsive"></img>
+	</div>
+</div>
+	{% else %}
+	<div class="col-sm-4">
+		<h1>Oh noes!</h1>
+		<h3>
+		Something went wrong...
+		</h3>
+		<h3>
+		We're not sure what it is, but we'll get to fixing it ASAP. 
+		</h3>
+		<p>
+		And rest assured that whoever did this is legitimately <em>beyond</em> fired.</p>
+		<p>
+		<span id="perky">Stay Perky!</span>
+		</p>
+    </div>
+	<div class="col-sm-8">
+		<img class="error-image" src="static/error.gif" class="img-responsive"></img>
+	</div>
+</div>
+{% endif %}
+{% endblock %}
